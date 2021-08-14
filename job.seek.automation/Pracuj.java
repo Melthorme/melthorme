@@ -38,7 +38,7 @@ public class Pracuj {
         // setting preferences
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("slider--2fq-O"))).click();
         Actions actions = new Actions(driver);
-        actions.sendKeys("tester manualny").perform();
+        actions.sendKeys("tester oprogramowania").perform();
         driver.findElement(By.className("slider--2rGn_")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("new-remote-work-filter__label"))).click();
