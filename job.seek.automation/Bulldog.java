@@ -40,9 +40,10 @@ public class Bulldog {
         driver.findElement(By.className("btn-search")).click();
 
         // setting preferences
-        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[1]/div/ul/li[6]/label")).click();
-        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[1]/div/ul/li[8]/label")).click();
-        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[2]/div/ul/li[7]/label")).click();
-        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[4]/div[1]/ul/li[1]/label")).click();
+        driver.findElement(By.xpath("//input[@id='city_trójmiasto']/..")).click();
+        driver.findElement(By.xpath("//input[@id='filters_remote']/..")).click();
+        driver.findElement(By.xpath("//input[@id='role_qa']/..")).click();
+        driver.findElement(By.xpath("//input[@id='role_tester']/..")).click();
+        driver.findElement(By.xpath("//input[@id='exp_level_junior']/..")).click();
     }
 }
