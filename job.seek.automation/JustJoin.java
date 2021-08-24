@@ -1,27 +1,28 @@
-package JobSeek;
+package automation.seek.job;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class JustJoin {
 
     WebDriver driver;
     JavascriptExecutor javascriptExecutor;
+    String url = "https://justjoin.it/";
 
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.edge.driver", "resources/edge-web-driver/msedgedriver.exe");
+        System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         javascriptExecutor = ((JavascriptExecutor) driver);
@@ -30,41 +31,49 @@ public class JustJoin {
     @Test
     public void justJoin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // the long duration time is mainly caused by the performance of my computer :)
-        driver.get("https://justjoin.it/");
+        driver.get(url);
 
         // closing cookies
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='root']/div[1]/button"))).click();
-
-        WebElement testingButton = driver.findElement(By.linkText("Testing"));
-        WebElement localButton =
-                driver.findElement(By.cssSelector("#root > div.css-ixnbwj > div > div.css-plb9h9 > div.css-plb9h9 > button > span.MuiButton-label"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), 'OK')]/.."))).click();
 
         // setting preferences
-        testingButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(localButton)).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Remote Poland"))).click();
-
+        driver.findElement(By.xpath("//span[contains(text(),'Testing')]/..")).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'Location')]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), 'Remote Poland')]"))).click();
 
         // opening new tab
-        javascriptExecutor.executeScript("window.open('https://justjoin.it/');");
+        javascriptExecutor.executeScript("window.open(arguments[0]);", url);
 
         // getting new tab visible
-        String originalWindow = driver.getWindowHandle();
+        String firstTab = driver.getWindowHandle();
         Set handles = driver.getWindowHandles();
-        handles.remove(originalWindow);
+        handles.remove(firstTab);
 
-        String nextWindow = String.valueOf(handles.iterator().next());
+        String secondTab = String.valueOf(handles.iterator().next());
 
-        driver.switchTo().window(nextWindow);
+        driver.switchTo().window(secondTab);
 
         // setting preferences
-        WebElement testingButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Testing")));
-        testingButton1.click();
-        WebElement localButton1 =
-                driver.findElement(By.cssSelector("#root > div.css-ixnbwj > div > div.css-plb9h9 > div.css-plb9h9 > button > span.MuiButton-label"));
-        localButton1.click();
-        driver.findElement(By.linkText("Trójmiasto")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Testing')]/.."))).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'Location')]")).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'Trójmiasto')]")).click();
 
+        // opening another tab
+        javascriptExecutor.executeScript("window.open(arguments[0]);", url);
+
+        // getting new tab visible
+        String secondTabClose = driver.getWindowHandle();
+        ArrayList tabs = new ArrayList(driver.getWindowHandles());
+        System.out.println(tabs.size());
+
+        driver.switchTo().window((String) tabs.get(2));
+
+
+        // setting preferences
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Testing')]/.."))).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'Location')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Other locations Poland')]")).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'Lublin')]")).click();
 
     }
 }

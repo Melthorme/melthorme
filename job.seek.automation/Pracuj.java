@@ -1,4 +1,4 @@
-package JobSeek;
+package automation.seek.job;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class Pracuj {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.edge.driver", "resources/edge-web-driver/msedgedriver.exe");
+        System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         javascriptExecutor = ((JavascriptExecutor) driver);

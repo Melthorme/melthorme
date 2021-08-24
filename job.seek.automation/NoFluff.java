@@ -1,4 +1,4 @@
-package JobSeek;
+package automation.seek.job;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class NoFluff {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.edge.driver", "resources/edge-web-driver/msedgedriver.exe");
+        System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         javascriptExecutor = ((JavascriptExecutor) driver);
@@ -33,29 +33,30 @@ public class NoFluff {
         driver.findElement(By.xpath("//button[contains(text(), ' Wyrażam zgodę ')]")).click();
 
         // setting preferences
-        // industry
+        // category
         driver.findElement(
-                By.xpath("/html/body/nfj-root/nfj-layout/nfj-controls-toolbar/div/div/div/nfj-filters/div/nfj-filter-trigger[2]/div/button")).click();
+                By.xpath("//span[contains(text(), 'Kategoria')]/..")).click();
         driver.switchTo().activeElement();
         driver.findElement(By.xpath("//button[contains(text(), ' Testing')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), ' Zatwierdź ')]")).click();
 
         // localization
         driver.findElement(
-                By.xpath("/html/body/nfj-root/nfj-layout/nfj-controls-toolbar/div/div/div/nfj-filters/div/nfj-filter-trigger[3]/div/button")).click();
+                By.xpath("//span[contains(text(), ' Lokalizacje')]/..")).click();
         driver.switchTo().activeElement();
         driver.findElement(By.xpath("//button[contains(text(), ' Zdalnie')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), ' Trójmiasto')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), ' Lublin')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), ' Zatwierdź ')]")).click();
 
         // experience
         driver.findElement(
-                By.xpath("/html/body/nfj-root/nfj-layout/nfj-controls-toolbar/div/div/div/nfj-filters/div/nfj-filter-trigger[5]/div/button")).click();
+                By.xpath("//span[contains(text(), 'Doświadczenie')]/..")).click();
         driver.switchTo().activeElement();
         driver.findElement(
-                By.xpath("/html/body/nfj-root/nfj-layout/nfj-controls-toolbar/div/div/div/nfj-filters/div/nfj-filter-trigger[5]/popover-content/div/div[4]/nfj-filters-wrapper/div/div/nfj-filter-universal-section/section/div/nfj-filter-control[1]/nfj-checkbox/label")).click();
+                By.xpath("//span[contains(text(), 'Stażysta')]")).click();
         driver.findElement(
-                By.xpath("/html/body/nfj-root/nfj-layout/nfj-controls-toolbar/div/div/div/nfj-filters/div/nfj-filter-trigger[5]/popover-content/div/div[4]/nfj-filters-wrapper/div/div/nfj-filter-universal-section/section/div/nfj-filter-control[2]/nfj-checkbox/label")).click();
+                By.xpath("//span[contains(text(), 'Junior')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), ' Zatwierdź ')]")).click();
 
     }

@@ -1,4 +1,4 @@
-package JobSeek;
+package automation.seek.job;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class Bulldog {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.edge.driver", "resources/edge-web-driver/msedgedriver.exe");
+        System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         javascriptExecutor = ((JavascriptExecutor) driver);
@@ -40,10 +40,19 @@ public class Bulldog {
         driver.findElement(By.className("btn-search")).click();
 
         // setting preferences
+
+        // selecting area
         driver.findElement(By.xpath("//input[@id='city_trójmiasto']/..")).click();
         driver.findElement(By.xpath("//input[@id='filters_remote']/..")).click();
+        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[1]/div/ul/li[9]/a")).click();
+        driver.findElement(By.xpath("//input[@id='city_lublin']/..")).click();
+
+        // selecting position
+        driver.findElement(By.xpath("//*[@id='jobs-search-form']/div[2]/div/ul/li[9]/a")).click();
         driver.findElement(By.xpath("//input[@id='role_qa']/..")).click();
         driver.findElement(By.xpath("//input[@id='role_tester']/..")).click();
+
+        // selecting experience
         driver.findElement(By.xpath("//input[@id='exp_level_junior']/..")).click();
     }
 }
