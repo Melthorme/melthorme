@@ -1,29 +1,15 @@
 package automation.seek.job;
 
-import org.junit.Before;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Bulldog {
+public class Bulldog extends BaseTest {
 
-    WebDriver driver;
-    JavascriptExecutor javascriptExecutor;
-
-
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
-        driver = new EdgeDriver();
-        driver.manage().window().maximize();
-        javascriptExecutor = ((JavascriptExecutor) driver);
-    }
 
     @Test
     public void bulldog() {
