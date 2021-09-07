@@ -1,5 +1,6 @@
 package automation.seek.job;
 
+import automation.seek.job.base.BaseTest;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -26,7 +27,7 @@ public class Pracuj extends BaseTest {
         actions.sendKeys("tester oprogramowania").perform();
         driver.findElement(By.className("slider--2rGn_")).click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("new-remote-work-filter__label"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Praca')]/.."))).click();
 
         driver.findElement(By.xpath("//button[contains(text(), 'Poziom stanowiska')]")).click();
         driver.switchTo().activeElement();

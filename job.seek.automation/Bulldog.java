@@ -1,6 +1,7 @@
 package automation.seek.job;
 
 
+import automation.seek.job.base.BaseTest;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,8 +19,6 @@ public class Bulldog extends BaseTest {
 
         // dismissing all the windows
         driver.findElement(By.className("confirm")).click();
-        driver.findElement(By.className("fa-times")).click();
-        driver.findElement(By.xpath("//*[@id='zarw-close-small']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='ue_push_dialog']/span"))).click();
 
         // navigating to the job section
