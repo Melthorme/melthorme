@@ -3,6 +3,7 @@
 <suite name="AllTests" verbose="1" >
 
     <test name="PositiveSearchFunctionTest" >
+        <parameter name="browser"  value="chrome"/>
         <parameter name="searchedItem"  value="t-shirt"/>
         <parameter name="expectedMessage"  value="1 result has been found."/>
 
@@ -13,6 +14,7 @@
 
 
     <test name="FailedSearchFunctionTest">
+        <parameter name="browser"  value="firefox"/>
         <parameter name="searchedItem"  value="tshirt"/>
         <parameter name="expectedMessage"  value="1 result has been found."/>
 
@@ -23,6 +25,7 @@
 
 
     <test name="CartFunctionTest">
+        <parameter name="browser"  value="edge"/>
         <classes>
             <class name="com.automationpractice.CartFunctionTest"/>
         </classes>
