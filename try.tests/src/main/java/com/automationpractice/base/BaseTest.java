@@ -18,28 +18,9 @@ public class BaseTest {
     @Parameters({ "browser"})
     @BeforeMethod
     public void setUp(@Optional("edge") String browser) {
-        switch(browser) {
-            case "edge":
-                System.setProperty("webdriver.edge.driver", "E:/itprojects/com.automationpractice/src/main/resources/msedgedriver.exe");
-                driver = new EdgeDriver();
-                break;
 
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "E:/itprojects/com.automationpractice/src/main/resources/chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", "E:/itprojects/com.automationpractice/src/main/resources/geckodriver.exe");
-                driver = new FirefoxDriver();
-                break;
-
-            default:
-                System.out.println("Do not know how to start " + browser + ", starting Edge instead.");
-                System.setProperty("webdriver.edge.driver", "E:/itprojects/com.automationpractice/src/main/resources/msedgedriver.exe");
-                driver = new EdgeDriver();
-                break;
-        }
+        BrowserDriverFactory factory = new BrowserDriverFactory(browser);
+        driver = factory.createDriver();
 
         driver.manage().window().maximize();
     }
