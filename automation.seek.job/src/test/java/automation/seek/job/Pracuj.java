@@ -1,8 +1,10 @@
 package automation.seek.job;
 
 import automation.seek.job.base.BaseTest;
-import automation.seek.job.pages.pracuj.FirstResultPage;
+import automation.seek.job.pages.pracuj.LublinAreaPage;
+import automation.seek.job.pages.pracuj.RemoteAreaPage;
 import automation.seek.job.pages.pracuj.PracujMainPage;
+import automation.seek.job.pages.pracuj.ThreeCityAreaPage;
 import org.junit.Test;
 
 public class Pracuj extends BaseTest {
@@ -17,9 +19,23 @@ public class Pracuj extends BaseTest {
         pracujMainPage.acceptCookies();
 
         // Set preferences
-        FirstResultPage firstResultPage = pracujMainPage.searchFor();
-        firstResultPage.closeWindow();
-        firstResultPage.experienceSet();
-        firstResultPage.areaSet();
+        RemoteAreaPage remoteAreaPage = pracujMainPage.searchForRemote();
+        remoteAreaPage.closeWindow();
+        remoteAreaPage.experienceSet();
+        remoteAreaPage.areaSet();
+
+        // Open new tab
+        remoteAreaPage.openNewTab();
+
+        // Set preferences
+        ThreeCityAreaPage threeCityAreaPage = pracujMainPage.searchForThreeCity();
+        threeCityAreaPage.experienceSet();
+
+        // Open another tab
+        threeCityAreaPage.openAnotherTab();
+
+        // Set preferences
+        LublinAreaPage lublinAreaPage = pracujMainPage.searchForLublin();
+        lublinAreaPage.experienceSet();
     }
 }
