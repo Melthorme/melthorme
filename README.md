@@ -1,4 +1,4 @@
-### Hi there, I'm Greg Piasecki 👋
+### Hi there, I'm Greg👋
 
 
 ...
